@@ -1,0 +1,52 @@
+.form {
+	margin-top: 30px;
+	border: 1px solid #352f5b;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: grid;
+	gap: 15px;
+	background: #352f5b;
+}
+
+.buttonAdd {
+	margin: auto;
+	border: none;
+	width: 100px;
+	background: rgb(78, 48, 150);
+	background: linear-gradient(0deg, #29244c, #423a71, 100%);
+	color: #fff;
+	overflow: hidden;
+}
+
+.buttonAdd:hover {
+	text-decoration: none;
+	color: #423a71;
+	background-color: #ffffff;
+	border-radius: 50px;
+}
+
+.buttonAdd:hover {
+	transition: all 0.6s ease-out;
+}
+
+.buttonAdd:active {
+	box-shadow:
+		4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+		-4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+		inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+		inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.labelInput {
+	background-color: #29244c;
+	border: none;
+	height: 30px;
+	width: 400px;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #c0c1c2;
+}
