@@ -6,7 +6,7 @@ import { RefreshContext } from '../../RefreshContext';
 export const AddNewTodo = () => {
 	const [newTodo, setNewTodo] = useState('');
 	const { setIsLoading } = use(LoadingContext);
-	const { setIsRefreshTodo, isRefreshTodos } = use(RefreshContext);
+	const { refetch } = use(RefreshContext);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -20,7 +20,7 @@ export const AddNewTodo = () => {
 				title: newTodo,
 			}),
 		})
-			.then(() => setIsRefreshTodo(!isRefreshTodos))
+			.then(() => refetch())
 			.finally(() => {
 				setIsLoading(false);
 				setNewTodo('');

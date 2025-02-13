@@ -8,7 +8,7 @@ export const TodoItem = ({ title, id }) => {
 	const [isEdit, setIsEdit] = useState(false);
 	const [newValue, setNewValue] = useState(title);
 	const { setIsLoading } = use(LoadingContext);
-	const { setIsRefreshTodo, isRefreshTodos } = use(RefreshContext);
+	const { refetch } = use(RefreshContext);
 
 	const src = isEdit ? '/src/assets/check-circle.svg' : '/src/assets/pencil-square.svg';
 
@@ -36,7 +36,7 @@ export const TodoItem = ({ title, id }) => {
 				title,
 			}),
 		})
-			.then(() => setIsRefreshTodo(!isRefreshTodos))
+			.then(() => refetch())
 			.finally(() => setIsLoading(false));
 	};
 
@@ -56,7 +56,7 @@ export const TodoItem = ({ title, id }) => {
 			method: 'DELETE',
 		})
 			.then((rawResponse) => rawResponse.json())
-			.then(() => setIsRefreshTodo(!isRefreshTodos))
+			.then(() => refetch())
 			.finally(() => setIsLoading(false));
 	};
 

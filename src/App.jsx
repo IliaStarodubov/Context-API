@@ -8,14 +8,17 @@ import { AddNewTodo } from './components/AddNewTodo/AddTodo';
 export const App = () => {
 	const [todos, setTodods] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [isRefreshTodos, setIsRefreshTodo] = useState(false);
 
-	useEffect(() => {
+	const refetch = () => {
 		fetch('http://localhost:3000/todos')
 			.then((loadedData) => loadedData.json())
 			.then((loadedTodos) => setTodods(loadedTodos))
 			.finally(() => setIsLoading(false));
-	}, [isRefreshTodos]);
+	};
+
+	useEffect(() => {
+		refetch();
+	}, []);
 
 	return (
 		<AppContextProvider
@@ -23,8 +26,7 @@ export const App = () => {
 			setIsLoading={setIsLoading}
 			setTodods={setTodods}
 			isLoading={isLoading}
-			isRefreshTodos={isRefreshTodos}
-			setIsRefreshTodo={setIsRefreshTodo}
+			refetch={refetch}
 		>
 			<SearchTodo />
 			<TodoList />

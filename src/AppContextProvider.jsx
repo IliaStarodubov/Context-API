@@ -8,11 +8,10 @@ export const AppContextProvider = ({
 	children,
 	isLoading,
 	setIsLoading,
-	isRefreshTodos,
-	setIsRefreshTodo,
+	refetch,
 }) => (
 	<TodosContext value={{ todos, setTodods }}>
-		<RefreshContext value={{ isRefreshTodos, setIsRefreshTodo }}>
+		<RefreshContext value={{ refetch }}>
 			<LoadingContext value={{ isLoading, setIsLoading }}>
 				{children}
 			</LoadingContext>
