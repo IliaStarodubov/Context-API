@@ -1,12 +1,10 @@
 import { use, useState } from 'react';
 import styles from './AddNewTodo.module.css';
-import { LoadingContext } from '../../LoadingContext';
-import { RefreshContext } from '../../RefreshContext';
+import { AppContext } from '../../AppContext';
 
 export const AddNewTodo = () => {
 	const [newTodo, setNewTodo] = useState('');
-	const { setIsLoading } = use(LoadingContext);
-	const { refetch } = use(RefreshContext);
+	const { setIsLoading, refetch } = use(AppContext);
 
 	const onSubmit = (event) => {
 		event.preventDefault();

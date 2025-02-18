@@ -1,14 +1,13 @@
 import { use, useState } from 'react';
 import styles from './todoitem.module.css';
-
-import { RefreshContext } from '../../RefreshContext';
-import { LoadingContext } from '../../LoadingContext';
+import { AppContext } from '../../AppContext';
 
 export const TodoItem = ({ title, id }) => {
 	const [isEdit, setIsEdit] = useState(false);
 	const [newValue, setNewValue] = useState(title);
-	const { setIsLoading } = use(LoadingContext);
-	const { refetch } = use(RefreshContext);
+	// const { setIsLoading } = use(LoadingContext);
+	// const { refetch } = use(RefreshContext);
+	const { setIsLoading, refetch } = use(AppContext);
 
 	const src = isEdit ? '/src/assets/check-circle.svg' : '/src/assets/pencil-square.svg';
 
@@ -49,7 +48,7 @@ export const TodoItem = ({ title, id }) => {
 		setIsEdit(!isEdit);
 	};
 
-	const requestDeleteTodo = (id) => {
+	const requestDeleteTodo = () => {
 		setIsLoading(true);
 
 		fetch(`http://localhost:3000/todos/${id}`, {
@@ -67,7 +66,7 @@ export const TodoItem = ({ title, id }) => {
 				<button onClick={onConfirmEditClick}>
 					<img className={styles.imgButton} src={src} alt="edit" />
 				</button>
-				<button onClick={() => requestDeleteTodo(id)}>
+				<button onClick={requestDeleteTodo}>
 					<img
 						className={styles.imgButton}
 						src="/src/assets/trash.svg"

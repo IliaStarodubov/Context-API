@@ -1,6 +1,6 @@
 import { use } from 'react';
 import styles from './SearchTodo.module.css';
-import { TodosContext } from '../../TodosContext';
+import { AppContext } from '../../AppContext';
 
 const debounce = (func, delay) => {
 	let timeoutId;
@@ -12,18 +12,18 @@ const debounce = (func, delay) => {
 };
 
 export const SearchTodo = () => {
-	const { setTodods } = use(TodosContext);
+	const { setTodos } = use(AppContext);
 
 	const onSearchTodoChange = ({ target }) => {
 		fetch(`http://localhost:3000/todos?q=${target.value}`)
 			.then((loadedData) => loadedData.json())
-			.then((loadedTodos) => setTodods(loadedTodos));
+			.then((loadedTodos) => setTodos(loadedTodos));
 	};
 
 	const onSortTodosChange = () => {
 		fetch(`http://localhost:3000/todos?_sort=title&_order=asc`)
 			.then((loadedData) => loadedData.json())
-			.then((loadedTodos) => setTodods(loadedTodos));
+			.then((loadedTodos) => setTodos(loadedTodos));
 	};
 
 	return (
